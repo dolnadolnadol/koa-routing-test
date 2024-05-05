@@ -19,9 +19,11 @@ export class TicketRepository implements ITicketRepository {
     return knex(config)("tickets").insert(ticket);
   }
   async updateById(id: number, ticket: Partial<ITicket>): Promise<void> {
-    return knex(config)("tickets").where({ ticket_id: id }).update(ticket);
+    return knex(config)("tickets").where("ticket_id", id).update(ticket);
   }
   async deleteById(id: number): Promise<void> {
-    return knex(config)("tickets").where("ticket_id", id).del();
+    return knex(config)("tickets")
+      .where("ticket_id", id)
+      .update("isDelete", true);
   }
 }

@@ -1,7 +1,9 @@
+import { Service } from "typedi";
 import { ITicket } from "../entities/ITicket";
 import { TicketRepository } from "./TicketRepository";
 
-export class TicketService {
+@Service()
+class TicketService {
   async getAllTickets() {
     let repo = new TicketRepository();
     return repo.list();
@@ -22,4 +24,15 @@ export class TicketService {
     let repo = new TicketRepository();
     return repo.deleteById(id);
   }
+}
+
+@Service()
+export class SingletonTicketService {
+  constructor(
+    // because we annotated ExampleInjectedService with the @Service()
+    // decorator TypeDI will automatically inject an instance of
+    // ExampleInjectedService here when the ExampleService class is requested
+    // from TypeDI.
+    public injectedService: TicketService
+  ) {}
 }

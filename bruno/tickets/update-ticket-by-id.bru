@@ -1,0 +1,18 @@
+meta {
+  name: update-ticket-by-id
+  type: http
+  seq: 4
+}
+
+put {
+  url: http://localhost:3000/tickets/11/delete
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "title": "new title",
+    "description": "new description"
+  }
+}

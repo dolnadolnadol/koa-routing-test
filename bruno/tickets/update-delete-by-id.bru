@@ -1,0 +1,17 @@
+meta {
+  name: update-delete-by-id
+  type: http
+  seq: 6
+}
+
+put {
+  url: http://localhost:3000/tickets/1/delete
+  body: json
+  auth: none
+}
+
+body:json {
+  {
+    "isDelete": true
+  }
+}

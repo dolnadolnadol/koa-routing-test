@@ -10,7 +10,8 @@
     "koa-bodyparser": "^4.4.1",
     "mysql2": "^3.9.7",
     "reflect-metadata": "^0.2.2",
-    "routing-controllers": "^0.10.4"
+    "routing-controllers": "^0.10.4",
+    "typedi": "^0.10.0"
   },
   "scripts": {
     "start": "ts-node app.ts"
