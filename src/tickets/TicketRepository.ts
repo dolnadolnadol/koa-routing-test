@@ -1,7 +1,7 @@
+import { ITicket } from "@app/entities/ITicket";
+import { ITicketRepository } from "@app/repositories/ITicketRepository";
+import config from "@knex/knexfile";
 import knex from "knex";
-import { ITicket } from "../entities/ITicket";
-import config from "../knexfile";
-import { ITicketRepository } from "../repositories/ITicketRepository";
 
 export class TicketRepository implements ITicketRepository {
   async list(): Promise<ITicket[]> {

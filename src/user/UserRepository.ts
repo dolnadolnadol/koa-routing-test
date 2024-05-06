@@ -1,6 +1,6 @@
+import config from "@knex/knexfile";
 import knex from "knex";
 import { IUser } from "../entities/IUser";
-import config from "../knexfile";
 import { IUserRepository } from "../repositories/IUserRepository";
 
 export class UserRepository implements IUserRepository {
