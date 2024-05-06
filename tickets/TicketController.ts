@@ -1,31 +1,43 @@
 import "reflect-metadata";
-import { Body, Controller, Get, Param, Post, Put } from "routing-controllers";
+import {
+  Body,
+  Controller,
+  Get,
+  HttpError,
+  Param,
+  Post,
+  Put,
+} from "routing-controllers";
 import { Container } from "typedi";
-import { ITicket } from "../entities/ITicket";
-import { SingletonTicketService } from "./TicketService";
+import { TicketStatus } from "../entities/ITicket";
+import { TicketService } from "./TicketService";
+import {
+  PostStatusRequest,
+  UpdateTicketStatusRequest,
+} from "./dto/TicketRequest";
 
 @Controller()
 export class TicketController {
   @Get("/tickets")
-  getAll() {
-    // let service = new TicketService();
-    // return service.getAllTickets();
-
-    let serviceinstant = Container.get(SingletonTicketService);
-    return serviceinstant.injectedService.getAllTickets();
+  async getAll() {
+    const serviceinstant = Container.get(TicketService);
+    try {
+      await serviceinstant.getAllTickets();
+      return { message: "getall err" };
+    } catch (err) {
+      throw new Error("errr to get all");
+    }
   }
 
   @Get("/tickets/:id")
-  getOne(@Param("id") id: number) {
-    // let service = new TicketService();
-    // return service.getTicketbyId(id);
-
-    let serviceinstant = Container.get(SingletonTicketService);
-    return serviceinstant.injectedService.getTicketbyId(id);
+  async getOne(@Param("id") id: number) {
+    const serviceinstant = Container.get(TicketService);
+    await serviceinstant.getTicketbyId(id);
+    return { message: "find id err" };
   }
 
   @Post("/tickets")
-  async post(@Body() user: ITicket) {
+  async post(@Body() user: PostStatusRequest) {
     const date = new Date();
     const day = date.getDate();
     const monthIndex = date.getMonth();
@@ -46,43 +58,52 @@ export class TicketController {
       ":" +
       seconds;
 
-    // let service = new TicketService();
-    // await service.addTicket({
-    //   title: user.title,
-    //   description: user.description ?? "",
-    //   created_at: myFormattedDate,
-    //   status: user.status,
-    // });
-
-    let serviceinstant = Container.get(SingletonTicketService);
-    serviceinstant.injectedService.addTicket({
+    const serviceinstant = Container.get(TicketService);
+    await serviceinstant.addTicket({
       title: user.title,
       description: user.description ?? "",
       created_at: myFormattedDate,
-      status: user.status,
+      status: TicketStatus.PENDING,
     });
     return { message: "post success" };
   }
 
   @Put("/tickets/:id")
-  put(@Param("id") id: number, @Body() user: ITicket) {
-    // let service = new TicketService();
-    // service.updateTicket(id, user);
-
-    let serviceinstant = Container.get(SingletonTicketService);
-    serviceinstant.injectedService.updateTicket(id, user);
-
-    return { message: "update success" };
+  async put(@Param("id") id: number, @Body() user: UpdateTicketStatusRequest) {
+    try {
+      const serviceinstant = Container.get(TicketService);
+      await serviceinstant.updateTicket(id, user);
+      return { message: "update success" };
+    } catch (err) {
+      if (err instanceof HttpError) {
+        console.error(err);
+        throw new HttpError(err.httpCode, err.message);
+      }
+      // console.error(err);
+      // throw new Error("internal server error");
+    }
   }
+  // @Patch("/tickets/:id/status")
+  // async updateStatus(@Param("id") id: number, @Body() status: string) {
+  //   try {
+  //     const serviceinstant = Container.get(TicketService);
+
+  //     await serviceinstant.updateTicket(id, user);
+  //     return { message: "update success" };
+  //   } catch (err) {
+  //     if (err instanceof HttpError) {
+  //       throw new HttpError(400, "400 Bad request");
+  //     }
+  //     console.error(err);
+  //     throw new Error("internal server error");
+  //   }
+  // }
 
   // @Delete("/tickets/:id")
   @Put("/tickets/:id/delete")
-  remove(@Param("id") id: number) {
-    // let service = new TicketService();
-    // service.deleteTicket(id);
-
-    let serviceinstant = Container.get(SingletonTicketService);
-    serviceinstant.injectedService.deleteTicket(id);
+  async remove(@Param("id") id: number) {
+    const serviceinstant = Container.get(TicketService);
+    await serviceinstant.deleteTicket(id);
 
     return { message: "delete success" };
   }

@@ -1,4 +1,4 @@
-export enum enum_ticket_status {
+export enum TicketStatus {
   PENDING = "PENDING",
   IN_PROGRESS = "IN_PROGRESS",
   COMPLETED = "COMPLETED",
@@ -11,5 +11,5 @@ export interface ITicket {
   description?: string;
   created_at: string;
   updated_at?: string;
-  status: enum_ticket_status;
+  status: TicketStatus;
 }

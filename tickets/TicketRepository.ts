@@ -5,9 +5,11 @@ import { ITicketRepository } from "../repositories/ITicketRepository";
 
 export class TicketRepository implements ITicketRepository {
   async list(): Promise<ITicket[]> {
-    return knex(config)<ITicket>("tickets")
-      .select("*")
-      .where("isDelete", false);
+    return (
+      knex(config)<ITicket>("tickets")
+        // .select("*")
+        .where("isDelete", false)
+    );
   }
   async findById(id: number): Promise<ITicket> {
     return knex(config)<ITicket>("tickets")
