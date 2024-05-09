@@ -5,7 +5,7 @@ import { IUserRepository } from "../repositories/IUserRepository";
 
 export class UserRepository implements IUserRepository {
   async list(): Promise<IUser[]> {
-    return knex(config)<IUser>("users").select("*").where("isDelete", false);
+    return knex(config)<IUser>("users").select("*").where("is_delete", false);
   }
   async findById(id: number): Promise<IUser> {
     return knex(config)<IUser>("users")

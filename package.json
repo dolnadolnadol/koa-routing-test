@@ -1,27 +1,42 @@
 {
   "dependencies": {
+    "@koa/cors": "^5.0.0",
     "@koa/multer": "^3.0.2",
     "@koa/router": "^12.0.1",
     "@types/lodash.pickby": "^4.6.9",
+    "chai": "^4.4.1",
+    "chai-as-promised": "^7.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "dayjs": "^1.11.11",
     "dotenv": "^16.4.5",
     "knex": "^3.1.0",
     "koa": "^2.15.3",
     "koa-bodyparser": "^4.4.1",
+    "mocha": "^10.4.0",
     "mysql2": "^3.9.7",
     "nodemon": "^3.1.0",
+    "nyc": "^15.1.0",
     "reflect-metadata": "^0.2.2",
     "routing-controllers": "^0.10.4",
+    "sqlite3": "^5.1.7",
+    "ts-mocha": "^10.0.0",
     "tsconfig-paths": "^4.2.0",
     "typedi": "^0.10.0"
   },
   "scripts": {
+    "test": "nyc mocha",
+    "build": "tsc",
     "start": "ts-node -r tsconfig-paths/register ./src/app.ts",
     "dev": "nodemon -r tsconfig-paths/register ./src/app.ts"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.16",
     "@types/koa": "^2.15.0",
+    "@types/mocha": "^10.0.6",
+    "@types/sinon": "^17.0.3",
+    "sinon": "^17.0.1",
+    "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"

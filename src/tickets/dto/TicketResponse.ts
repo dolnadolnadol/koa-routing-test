@@ -11,7 +11,7 @@ interface ITicketResponse {
 export class TicketResponse {
   static toResponse(tickets: ITicket): ITicketResponse {
     const tickerResponse: ITicketResponse = {
-      ticket_id: tickets.ticket_id!,
+      ticket_id: tickets.ticket_id,
       title: tickets.title,
       created_at: tickets.created_at,
       description: tickets.description ?? "",

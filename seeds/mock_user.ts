@@ -21,36 +21,43 @@ export async function seed(knex: Knex): Promise<void> {
       title: "title1",
       description: "email@gmail.com1",
       created_at: "2024-05-01 19:43:46",
+      updated_at: "2024-05-06 16:43:09",
     },
     {
       title: "title2",
       description: "email@gmail.com2",
       created_at: "2024-05-01 19:43:46",
+      updated_at: "2024-05-06 16:43:09",
     },
     {
       title: "title3",
       description: "email@gmail.com3",
       created_at: "2024-05-01 19:43:46",
+      updated_at: "2024-05-06 16:43:09",
     },
     {
       title: "title4",
       description: "email@gmail.com4",
       created_at: "2024-05-01 19:43:46",
+      updated_at: "2024-05-06 16:43:09",
     },
     {
       title: "title5",
       description: "email@gmail.com5",
       created_at: "2024-05-01 19:43:46",
+      updated_at: "2024-05-06 16:43:09",
     },
     {
       title: "title6",
       description: "email@gmail.com6",
       created_at: "2024-05-01 19:43:46",
+      updated_at: "2024-05-06 16:43:09",
     },
     {
       title: "title7",
       description: "email@gmail.com7",
       created_at: "2024-05-01 19:43:46",
+      updated_at: "2024-05-06 16:43:09",
     },
   ]);
 }
