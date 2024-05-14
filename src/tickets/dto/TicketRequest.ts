@@ -1,7 +1,8 @@
 import { NotAllow } from "@app/decorators/NotAllow";
+import { myFormattedDate } from "@app/helper/FormattedDate";
 import { Expose } from "class-transformer";
 import { IsEnum, IsNotEmpty, IsOptional, IsString } from "class-validator";
-import { TicketStatus } from "../../entities/ITicket";
+import { ITicket, TicketStatus } from "../../entities/ITicket";
 
 export class PostStatusRequest {
   @Expose({ name: "title" })
@@ -12,9 +13,20 @@ export class PostStatusRequest {
   @Expose({ name: "description" })
   @IsOptional()
   description?: string;
+
+  @NotAllow()
+  ticket_id: string;
+
+  @NotAllow()
+  status: TicketStatus;
+
+  @NotAllow()
+  updated_at: string;
+
+  @NotAllow()
+  created_at: string;
 }
 export class UpdateTicketStatusRequest {
-  //   @Expose({ name: "status" })
   @IsOptional()
   @IsEnum(TicketStatus)
   status?: TicketStatus;
@@ -40,4 +52,17 @@ export class UpdateTicketRequest {
 
   @NotAllow()
   created_at: string;
+}
+
+export class TicketRequest {
+  static toRequest(tickets: PostStatusRequest): ITicket {
+    const tickerRequest: ITicket = {
+      title: tickets.title,
+      description: tickets.description ?? "",
+      created_at: myFormattedDate.myFormattedDate,
+      updated_at: myFormattedDate.myFormattedDate,
+      status: TicketStatus.PENDING,
+    };
+    return tickerRequest;
+  }
 }

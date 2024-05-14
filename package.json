@@ -21,7 +21,6 @@
     "routing-controllers": "^0.10.4",
     "sqlite3": "^5.1.7",
     "ts-mocha": "^10.0.0",
-    "tsconfig-paths": "^4.2.0",
     "typedi": "^0.10.0"
   },
   "scripts": {
@@ -38,6 +37,7 @@
     "sinon": "^17.0.1",
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
     "tslib": "^2.6.2",
     "typescript": "^5.4.5"
   }
