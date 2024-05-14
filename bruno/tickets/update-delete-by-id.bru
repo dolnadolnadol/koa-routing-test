@@ -4,8 +4,8 @@ meta {
   seq: 6
 }
 
-put {
-  url: http://localhost:3000/tickets/1/delete
+delete {
+  url: {{HOSTNAME}}/tickets/{{id}}/delete
   body: json
   auth: none
 }

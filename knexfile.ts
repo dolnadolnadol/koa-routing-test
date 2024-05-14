@@ -17,7 +17,16 @@ const config = {
     max: parseInt(process.env.DATABASE__POOL_MAX || "1"),
     acquireTimeoutMillis: parseInt(process.env.DATABASE__TIMEOUT || "180000"),
   },
-  migrations: { directory: "./migrations/" },
+  migrations: { directory: "./migrations" },
 };
+
+// const config = {
+//   client: "sqlite3",
+//   connection: {
+//     filename: ":memory:",
+//   },
+//   migrations: { directory: "./migrations" },
+// };
+
 export default config;
 // module.exports = config;

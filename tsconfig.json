@@ -1,20 +1,31 @@
 {
   "compilerOptions": {
     "module": "commonjs",
-    "moduleResolution": "node",
-    "target": "es2018",
-    "lib": ["es2018"],
-    "outDir": "build/node",
-    "rootDir": "./",
-    "strict": true,
+    "target": "ES2019",
+    "lib": ["ES2017", "ES2015", "ES6"],
+    "importHelpers": true,
+    "removeComments": true,
+    "noImplicitAny": true,
+    "outDir": "./dist",
     "sourceMap": true,
-    "inlineSources": true,
-    "removeComments": false,
-    "esModuleInterop": true,
-    "experimentalDecorators": true,
+    "declaration": false,
+    "baseUrl": ".",
+    "moduleResolution": "node",
     "emitDecoratorMetadata": true,
-    "forceConsistentCasingInFileNames": true,
-    "types": ["@types/node"]
-  },
-  "exclude": ["build", "node_modules", "sample", "**/*.spec.ts", "test/**"]
+    "experimentalDecorators": true,
+    "resolveJsonModule": true,
+    "isolatedModules": false,
+    "skipLibCheck": true,
+    "noUnusedParameters": false,
+    "noUnusedLocals": false,
+    "allowUnreachableCode": false,
+    "esModuleInterop": true,
+    "types": ["@types/node"],
+    "typeRoots": ["./typings", "./node_modules", "./node_modules/@types"],
+    "paths": {
+      "@app/*": ["./src/*"],
+      "@test/*": ["./test/*"],
+      "@knex/knexfile": ["./knexfile.ts"] 
+    }
+  }
 }

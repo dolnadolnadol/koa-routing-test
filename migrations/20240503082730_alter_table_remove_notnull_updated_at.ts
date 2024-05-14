@@ -7,5 +7,7 @@ export async function up(knex: Knex): Promise<void> {
 }
 
 export async function down(knex: Knex): Promise<void> {
-  return knex.schema.dropTable("tickets");
+  return knex.schema.alterTable("tickets", (table) => {
+    table.dateTime("updated_at").alter();
+  });
 }

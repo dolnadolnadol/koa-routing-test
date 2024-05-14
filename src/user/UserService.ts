@@ -1,13 +1,7 @@
 import { IUser } from "../entities/IUser";
 import { UserRepository } from "./UserRepository";
 
-// export function UserService() {
-//     console.log("UserService");
-//     UserRepository();
-// };
-
 export class UserService {
-  // repo : UserRepository;
   async getAllUsers() {
     let repo = new UserRepository();
     return repo.list();
